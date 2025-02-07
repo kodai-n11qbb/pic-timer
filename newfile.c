@@ -1,4 +1,3 @@
-
 #pragma config FOSC = HS        // Oscillator Selection bits (HS oscillator)
 #pragma config WDTE = OFF       // Watchdog Timer (WDT disabled)
 #pragma config PWRTE = OFF      // Power-up Timer Enable bit (Power-up Timer is disabled)
@@ -8,6 +7,8 @@
 // Use project enums instead of #define for ON and OFF.
 
 #include <xc.h>
+#include <stdint.h>
+#include <stdio.h>
 
 
 
@@ -20,15 +21,58 @@
 #define		E		PORTBbits.RB1
 #define _XTAL_FREQ 10000000
 
-#include <stdio.h>
-#include <string.h>                  
-
 void init_LCD(void);
 void out_inst_LCD(unsigned char);
 void out_str_LCD(unsigned char);
-void LCD_wr(char*, unsigned char, unsigned char);
 void LCD_wr_char(char);
 void out_LCD(unsigned char);
+
+volatile unsigned int tenthSeconds = 0;
+volatile unsigned char timerRunning = 0;
+
+void startTimer(void) {
+    TMR0 = 0;
+    OPTION_REG = 0b00000111;    // Timer0, prescaler 1:256
+    INTCON = 0b10100000;        // Enable global and TMR0 interrupts
+    timerRunning = 1;
+}
+
+void stopTimer(void) {
+    INTCON &= ~0b00100000;      // Disable TMR0 interrupt
+    timerRunning = 0;
+}
+
+// New function to set cursor position
+void LCD_goto(unsigned char x, unsigned char y) {
+    unsigned char pos = 0x80 | (x ? 0x40 : 0x00) | y;
+    out_inst_LCD(pos >> 4);
+    out_inst_LCD(pos & 0x0F);
+}
+
+void displayTime(void) {
+    LCD_goto(1, 0);  // Move to second line, first position
+    
+    // Display tens digit
+    LCD_wr_char('0' + (tenthSeconds / 100));
+    // Display ones digit
+    LCD_wr_char('0' + ((tenthSeconds / 10) % 10));
+    // Display decimal point
+    LCD_wr_char('.');
+    // Display tenths
+    LCD_wr_char('0' + (tenthSeconds % 10));
+    // Display unit
+    LCD_wr_char('s');
+}
+
+void __interrupt() ISR(void) {
+    if (INTCON & 0b00000100) {      // TMR0IF is set
+        INTCON &= ~0b00000100;       // Clear TMR0IF
+        if (timerRunning) {
+            tenthSeconds++;
+            displayTime();
+        }
+    }
+}
 
 void init_LCD(void)
 {
@@ -53,28 +97,6 @@ void init_LCD(void)
 	out_inst_LCD(0x06);		//エントリモードセット		下位4bit
     
     __delay_ms(20);
-}
-
-// ?文字列データ送信関数
-void LCD_wr(char *str_p, unsigned char x, unsigned char y)
-{
-	unsigned char posi = 0x80;	// DDRAM ADDRESS制御のためのinstセット
-	unsigned char posiH, posiL;
-
-	posi |= (x ? 0x40+y : 0x00+y);	// DDRAM ADDRESSを合成
-	posiH = posi & 0xf0;		// 上位bit
-	posiH = posiH >> 4;		// 上位から下位へ
-	posiL = posi & 0x0f;		// 下位bit
-
-	out_inst_LCD(posiH);		// DDRAM ADDRESSセット（上位4bit）
-	out_inst_LCD(posiL);		// DDRAM ADDRESSセット（下位4bit）
-	
-	// LCDに文字列を送信
-	while(*str_p)
-	{
-		LCD_wr_char(*str_p);	// 文字データ送信
-		str_p++;
-	}
 }
 
 // ?文字データ送信関数
@@ -108,23 +130,14 @@ void out_str_LCD(unsigned char out_data)
 	__delay_us(100);
 }
 
-// ?LCD出力関数
+// LCD出力関数
 void out_LCD(unsigned char data)
 {
-	unsigned char d[4];
-	unsigned char i;
-	
-	// 1ビット毎のﾃﾞｰﾀに変換
-	for (i = 0; i < 4; i++){
-		d[i] = data & 0x01;
-		data >>= 1;
-	}
-	
-	// ビット毎のﾃﾞｰﾀ出力
-	DB4 = d[0];
-	DB5 = d[1];
-	DB6 = d[2];
-	DB7 = d[3];
+    // 配列を使用せず、直接ビット操作で出力
+    DB4 = (data & 0x01);
+    DB5 = (data & 0x02) >> 1;
+    DB6 = (data & 0x04) >> 2;
+    DB7 = (data & 0x08) >> 3;
 }
 
 
@@ -136,11 +149,18 @@ void main(void) {
 
     init_LCD();			
 
-    LCD_wr("Timer Start!",0,0);  // 1行目の表示を変更
-    LCD_wr("Time: 0 sec",1,0);   // 初期秒数表示
+    // Initialize display using direct character output
+    LCD_goto(1, 0);
+    LCD_wr_char('0');
+    LCD_wr_char('0');
+    LCD_wr_char('.');
+    LCD_wr_char('0');
+    LCD_wr_char('s');
+
+    startTimer();
 
     while(1) {
-        // メインループは空のまま
+        // Empty main loop
     }
     
     return;

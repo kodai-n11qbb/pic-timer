@@ -7,7 +7,6 @@
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "newfile.c" 2
-
 #pragma config FOSC = HS
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
@@ -490,8 +489,143 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
+# 9 "newfile.c" 2
+
+# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 1 3
+# 13 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 3
+typedef signed char int8_t;
+
+
+
+
+
+
+typedef signed int int16_t;
+
+
+
+
+
+
+
+typedef __int24 int24_t;
+
+
+
+
+
+
+
+typedef signed long int int32_t;
+# 52 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 3
+typedef unsigned char uint8_t;
+
+
+
+
+
+typedef unsigned int uint16_t;
+
+
+
+
+
+
+typedef __uint24 uint24_t;
+
+
+
+
+
+
+typedef unsigned long int uint32_t;
+# 88 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 3
+typedef signed char int_least8_t;
+
+
+
+
+
+
+
+typedef signed int int_least16_t;
+# 109 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 3
+typedef __int24 int_least24_t;
+# 118 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 3
+typedef signed long int int_least32_t;
+# 136 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 3
+typedef unsigned char uint_least8_t;
+
+
+
+
+
+
+typedef unsigned int uint_least16_t;
+# 154 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 3
+typedef __uint24 uint_least24_t;
+
+
+
+
+
+
+
+typedef unsigned long int uint_least32_t;
+# 181 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 3
+typedef signed char int_fast8_t;
+
+
+
+
+
+
+typedef signed int int_fast16_t;
+# 200 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 3
+typedef __int24 int_fast24_t;
+
+
+
+
+
+
+
+typedef signed long int int_fast32_t;
+# 224 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 3
+typedef unsigned char uint_fast8_t;
+
+
+
+
+
+typedef unsigned int uint_fast16_t;
+# 240 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 3
+typedef __uint24 uint_fast24_t;
+
+
+
+
+
+
+typedef unsigned long int uint_fast32_t;
+# 268 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 3
+typedef int32_t intmax_t;
+# 282 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdint.h" 3
+typedef uint32_t uintmax_t;
+
+
+
+
+
+
+typedef int16_t intptr_t;
+
+
+
+
+typedef uint16_t uintptr_t;
 # 10 "newfile.c" 2
-# 23 "newfile.c"
+
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdio.h" 1 3
 
 
@@ -589,48 +723,60 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 #pragma printf_check(sprintf) const
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
-# 23 "newfile.c" 2
-
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\string.h" 1 3
-# 14 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\string.h" 3
-extern void * memcpy(void *, const void *, size_t);
-extern void * memmove(void *, const void *, size_t);
-extern void * memset(void *, int, size_t);
-# 36 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\string.h" 3
-extern char * strcat(char *, const char *);
-extern char * strcpy(char *, const char *);
-extern char * strncat(char *, const char *, size_t);
-extern char * strncpy(char *, const char *, size_t);
-extern char * strdup(const char *);
-extern char * strtok(char *, const char *);
-
-
-extern int memcmp(const void *, const void *, size_t);
-extern int strcmp(const char *, const char *);
-extern int stricmp(const char *, const char *);
-extern int strncmp(const char *, const char *, size_t);
-extern int strnicmp(const char *, const char *, size_t);
-extern void * memchr(const void *, int, size_t);
-extern size_t strcspn(const char *, const char *);
-extern char * strpbrk(const char *, const char *);
-extern size_t strspn(const char *, const char *);
-extern char * strstr(const char *, const char *);
-extern char * stristr(const char *, const char *);
-extern char * strerror(int);
-extern size_t strlen(const char *);
-extern char * strchr(const char *, int);
-extern char * strichr(const char *, int);
-extern char * strrchr(const char *, int);
-extern char * strrichr(const char *, int);
-# 24 "newfile.c" 2
-
-
+# 11 "newfile.c" 2
+# 24 "newfile.c"
 void init_LCD(void);
 void out_inst_LCD(unsigned char);
 void out_str_LCD(unsigned char);
-void LCD_wr(char*, unsigned char, unsigned char);
 void LCD_wr_char(char);
 void out_LCD(unsigned char);
+
+volatile unsigned int tenthSeconds = 0;
+volatile unsigned char timerRunning = 0;
+
+void startTimer(void) {
+    TMR0 = 0;
+    OPTION_REG = 0b00000111;
+    INTCON = 0b10100000;
+    timerRunning = 1;
+}
+
+void stopTimer(void) {
+    INTCON &= ~0b00100000;
+    timerRunning = 0;
+}
+
+
+void LCD_goto(unsigned char x, unsigned char y) {
+    unsigned char pos = 0x80 | (x ? 0x40 : 0x00) | y;
+    out_inst_LCD(pos >> 4);
+    out_inst_LCD(pos & 0x0F);
+}
+
+void displayTime(void) {
+    LCD_goto(1, 0);
+
+
+    LCD_wr_char('0' + (tenthSeconds / 100));
+
+    LCD_wr_char('0' + ((tenthSeconds / 10) % 10));
+
+    LCD_wr_char('.');
+
+    LCD_wr_char('0' + (tenthSeconds % 10));
+
+    LCD_wr_char('s');
+}
+
+void __attribute__((picinterrupt(("")))) ISR(void) {
+    if (INTCON & 0b00000100) {
+        INTCON &= ~0b00000100;
+        if (timerRunning) {
+            tenthSeconds++;
+            displayTime();
+        }
+    }
+}
 
 void init_LCD(void)
 {
@@ -655,28 +801,6 @@ void init_LCD(void)
  out_inst_LCD(0x06);
 
     _delay((unsigned long)((20)*(10000000/4000.0)));
-}
-
-
-void LCD_wr(char *str_p, unsigned char x, unsigned char y)
-{
- unsigned char posi = 0x80;
- unsigned char posiH, posiL;
-
- posi |= (x ? 0x40+y : 0x00+y);
- posiH = posi & 0xf0;
- posiH = posiH >> 4;
- posiL = posi & 0x0f;
-
- out_inst_LCD(posiH);
- out_inst_LCD(posiL);
-
-
- while(*str_p)
- {
-  LCD_wr_char(*str_p);
-  str_p++;
- }
 }
 
 
@@ -713,20 +837,11 @@ void out_str_LCD(unsigned char out_data)
 
 void out_LCD(unsigned char data)
 {
- unsigned char d[4];
- unsigned char i;
 
-
- for (i = 0; i < 4; i++){
-  d[i] = data & 0x01;
-  data >>= 1;
- }
-
-
- PORTBbits.RB4 = d[0];
- PORTBbits.RB5 = d[1];
- PORTBbits.RB6 = d[2];
- PORTBbits.RB7 = d[3];
+    PORTBbits.RB4 = (data & 0x01);
+    PORTBbits.RB5 = (data & 0x02) >> 1;
+    PORTBbits.RB6 = (data & 0x04) >> 2;
+    PORTBbits.RB7 = (data & 0x08) >> 3;
 }
 
 
@@ -738,8 +853,15 @@ void main(void) {
 
     init_LCD();
 
-    LCD_wr("Timer Start!",0,0);
-    LCD_wr("Time: 0 sec",1,0);
+
+    LCD_goto(1, 0);
+    LCD_wr_char('0');
+    LCD_wr_char('0');
+    LCD_wr_char('.');
+    LCD_wr_char('0');
+    LCD_wr_char('s');
+
+    startTimer();
 
     while(1) {
 
