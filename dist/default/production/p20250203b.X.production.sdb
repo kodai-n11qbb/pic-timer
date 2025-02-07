@@ -15,30 +15,30 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"33 C:\Users\sd2312102\Desktop\p20250203b.X\newfile.c
+"30 C:\Users\sd2312102\Desktop\p20250203b.X\newfile.c
 [v _startTimer startTimer `(v  1 e 1 0 ]
-"46
+"43
 [v _LCD_goto LCD_goto `(v  1 e 1 0 ]
 [v i1_LCD_goto LCD_goto `(v  1 e 1 0 ]
-"52
+"49
 [v _displayTime displayTime `(v  1 e 1 0 ]
-"67
+"64
 [v _ISR ISR `II(v  1 e 1 0 ]
-"77
+"79
 [v _init_LCD init_LCD `(v  1 e 1 0 ]
-"103
+"105
 [v _LCD_wr_char LCD_wr_char `(v  1 e 1 0 ]
 [v i1_LCD_wr_char LCD_wr_char `(v  1 e 1 0 ]
-"116
+"118
 [v _out_inst_LCD out_inst_LCD `(v  1 e 1 0 ]
 [v i1_out_inst_LCD out_inst_LCD `(v  1 e 1 0 ]
-"125
+"127
 [v _out_str_LCD out_str_LCD `(v  1 e 1 0 ]
 [v i1_out_str_LCD out_str_LCD `(v  1 e 1 0 ]
-"134
+"136
 [v _out_LCD out_LCD `(v  1 e 1 0 ]
 [v i1_out_LCD out_LCD `(v  1 e 1 0 ]
-"144
+"145
 [v _main main `(v  1 e 1 0 ]
 "59 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f84a.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
@@ -66,110 +66,112 @@
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
 "498
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
-"30 C:\Users\sd2312102\Desktop\p20250203b.X\newfile.c
+"26 C:\Users\sd2312102\Desktop\p20250203b.X\newfile.c
 [v _tenthSeconds tenthSeconds `VEui  1 e 2 0 ]
-"31
+"27
 [v _timerRunning timerRunning `VEuc  1 e 1 0 ]
-"144
+"28
+[v _overflowCount overflowCount `VEuc  1 e 1 0 ]
+"145
 [v _main main `(v  1 e 1 0 ]
 {
-"167
+"166
 } 0
-"33
+"30
 [v _startTimer startTimer `(v  1 e 1 0 ]
 {
-"38
+"35
 } 0
-"77
+"79
 [v _init_LCD init_LCD `(v  1 e 1 0 ]
 {
-"79
-[v init_LCD@i i `i  1 a 2 25 ]
-"100
+"81
+[v init_LCD@i i `i  1 a 2 26 ]
+"102
 } 0
-"103
+"105
 [v _LCD_wr_char LCD_wr_char `(v  1 e 1 0 ]
 {
 [v LCD_wr_char@c c `uc  1 a 1 wreg ]
-"105
-[v LCD_wr_char@str_H str_H `uc  1 a 1 26 ]
-[v LCD_wr_char@str_L str_L `uc  1 a 1 24 ]
-"103
-[v LCD_wr_char@c c `uc  1 a 1 wreg ]
 "107
-[v LCD_wr_char@c c `uc  1 a 1 25 ]
-"113
+[v LCD_wr_char@str_H str_H `uc  1 a 1 27 ]
+[v LCD_wr_char@str_L str_L `uc  1 a 1 25 ]
+"105
+[v LCD_wr_char@c c `uc  1 a 1 wreg ]
+"109
+[v LCD_wr_char@c c `uc  1 a 1 26 ]
+"115
 } 0
-"125
+"127
 [v _out_str_LCD out_str_LCD `(v  1 e 1 0 ]
 {
 [v out_str_LCD@out_data out_data `uc  1 a 1 wreg ]
 [v out_str_LCD@out_data out_data `uc  1 a 1 wreg ]
-"127
-[v out_str_LCD@out_data out_data `uc  1 a 1 21 ]
-"131
+"129
+[v out_str_LCD@out_data out_data `uc  1 a 1 22 ]
+"133
 } 0
-"46
+"43
 [v _LCD_goto LCD_goto `(v  1 e 1 0 ]
 {
 [v LCD_goto@x x `uc  1 a 1 wreg ]
-"47
-[v LCD_goto@pos pos `uc  1 a 1 28 ]
-"46
+"44
+[v LCD_goto@pos pos `uc  1 a 1 29 ]
+"43
 [v LCD_goto@x x `uc  1 a 1 wreg ]
-[v LCD_goto@y y `uc  1 p 1 23 ]
-[v LCD_goto@x x `uc  1 a 1 25 ]
-"50
+[v LCD_goto@y y `uc  1 p 1 24 ]
+[v LCD_goto@x x `uc  1 a 1 26 ]
+"47
 } 0
-"116
+"118
 [v _out_inst_LCD out_inst_LCD `(v  1 e 1 0 ]
 {
 [v out_inst_LCD@out_data out_data `uc  1 a 1 wreg ]
 [v out_inst_LCD@out_data out_data `uc  1 a 1 wreg ]
-"118
-[v out_inst_LCD@out_data out_data `uc  1 a 1 22 ]
-"122
+"120
+[v out_inst_LCD@out_data out_data `uc  1 a 1 23 ]
+"124
 } 0
-"134
+"136
 [v _out_LCD out_LCD `(v  1 e 1 0 ]
 {
 [v out_LCD@data data `uc  1 a 1 wreg ]
 [v out_LCD@data data `uc  1 a 1 wreg ]
-"137
-[v out_LCD@data data `uc  1 a 1 19 ]
-"141
+"139
+[v out_LCD@data data `uc  1 a 1 20 ]
+"143
 } 0
-"67
+"64
 [v _ISR ISR `II(v  1 e 1 0 ]
 {
-"75
+"77
 } 0
-"52
+"49
 [v _displayTime displayTime `(v  1 e 1 0 ]
 {
-"65
+"62
 } 0
-"103
+"105
 [v i1_LCD_wr_char LCD_wr_char `(v  1 e 1 0 ]
 {
 [v i1LCD_wr_char@c c `uc  1 a 1 wreg ]
 [v i1LCD_wr_char@str_H LCD_wr_char `uc  1 a 1 9 ]
 [v i1LCD_wr_char@str_L LCD_wr_char `uc  1 a 1 7 ]
 [v i1LCD_wr_char@c c `uc  1 a 1 wreg ]
-"107
+"109
 [v i1LCD_wr_char@c c `uc  1 a 1 8 ]
-"113
+"115
 } 0
-"125
+"127
 [v i1_out_str_LCD out_str_LCD `(v  1 e 1 0 ]
 {
 [v i1out_str_LCD@out_data out_data `uc  1 a 1 wreg ]
 [v i1out_str_LCD@out_data out_data `uc  1 a 1 wreg ]
-"127
+"129
 [v i1out_str_LCD@out_data out_data `uc  1 a 1 4 ]
-"131
+"133
 } 0
-"46
+"43
 [v i1_LCD_goto LCD_goto `(v  1 e 1 0 ]
 {
 [v i1LCD_goto@x x `uc  1 a 1 wreg ]
@@ -177,25 +179,25 @@
 [v i1LCD_goto@x x `uc  1 a 1 wreg ]
 [v i1LCD_goto@y y `uc  1 p 1 6 ]
 [v i1LCD_goto@x x `uc  1 a 1 8 ]
-"50
+"47
 } 0
-"116
+"118
 [v i1_out_inst_LCD out_inst_LCD `(v  1 e 1 0 ]
 {
 [v i1out_inst_LCD@out_data out_data `uc  1 a 1 wreg ]
 [v i1out_inst_LCD@out_data out_data `uc  1 a 1 wreg ]
-"118
+"120
 [v i1out_inst_LCD@out_data out_data `uc  1 a 1 5 ]
-"122
+"124
 } 0
-"134
+"136
 [v i1_out_LCD out_LCD `(v  1 e 1 0 ]
 {
 [v i1out_LCD@data data `uc  1 a 1 wreg ]
 [v i1out_LCD@data data `uc  1 a 1 wreg ]
-"137
+"139
 [v i1out_LCD@data data `uc  1 a 1 2 ]
-"141
+"143
 } 0
 "5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\lwmod.c
 [v ___lwmod __lwmod `(ui  1 e 2 0 ]

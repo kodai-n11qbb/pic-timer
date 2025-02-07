@@ -625,106 +625,7 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 # 10 "newfile.c" 2
-
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdio.h" 1 3
-
-
-
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\__size_t.h" 1 3
-
-
-
-typedef unsigned size_t;
-# 4 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdio.h" 2 3
-
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\__null.h" 1 3
-# 5 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdio.h" 2 3
-
-
-
-
-
-
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdarg.h" 1 3
-
-
-
-
-
-
-typedef void * va_list[1];
-
-#pragma intrinsic(__va_start)
-extern void * __va_start(void);
-
-#pragma intrinsic(__va_arg)
-extern void * __va_arg(void *, ...);
-# 11 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdio.h" 2 3
-# 43 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdio.h" 3
-struct __prbuf
-{
- char * ptr;
- void (* func)(char);
-};
-# 85 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdio.h" 3
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\conio.h" 1 3
-
-
-
-
-
-
-
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\errno.h" 1 3
-# 29 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\errno.h" 3
-extern int errno;
-# 8 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\conio.h" 2 3
-
-
-
-
-extern void init_uart(void);
-
-extern char getch(void);
-extern char getche(void);
-extern void putch(char);
-extern void ungetch(char);
-
-extern __bit kbhit(void);
-
-
-
-extern char * cgets(char *);
-extern void cputs(const char *);
-# 85 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdio.h" 2 3
-
-
-
-extern int cprintf(char *, ...);
-#pragma printf_check(cprintf)
-
-
-
-extern int _doprnt(struct __prbuf *, const register char *, register va_list);
-# 180 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\c90\\stdio.h" 3
-#pragma printf_check(vprintf) const
-#pragma printf_check(vsprintf) const
-
-extern char * gets(char *);
-extern int puts(const char *);
-extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
-extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
-extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
-extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
-extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
-extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
-
-#pragma printf_check(printf) const
-#pragma printf_check(sprintf) const
-extern int sprintf(char *, const char *, ...);
-extern int printf(const char *, ...);
-# 11 "newfile.c" 2
-# 24 "newfile.c"
+# 20 "newfile.c"
 void init_LCD(void);
 void out_inst_LCD(unsigned char);
 void out_str_LCD(unsigned char);
@@ -733,9 +634,10 @@ void out_LCD(unsigned char);
 
 volatile unsigned int tenthSeconds = 0;
 volatile unsigned char timerRunning = 0;
+volatile unsigned char overflowCount = 0;
 
 void startTimer(void) {
-    TMR0 = 0;
+    TMR0 = 12;
     OPTION_REG = 0b00000111;
     INTCON = 0b10100000;
     timerRunning = 1;
@@ -754,7 +656,7 @@ void LCD_goto(unsigned char x, unsigned char y) {
 }
 
 void displayTime(void) {
-    LCD_goto(1, 0);
+    LCD_goto(1, 7);
 
 
     LCD_wr_char('0' + (tenthSeconds / 100));
@@ -771,34 +673,39 @@ void displayTime(void) {
 void __attribute__((picinterrupt(("")))) ISR(void) {
     if (INTCON & 0b00000100) {
         INTCON &= ~0b00000100;
+        TMR0 = 12;
         if (timerRunning) {
-            tenthSeconds++;
-            displayTime();
+            overflowCount++;
+            if (overflowCount >= 4) {
+                overflowCount = 0;
+                tenthSeconds++;
+                displayTime();
+            }
         }
     }
 }
 
 void init_LCD(void)
 {
- int i;
+    int i;
 
     _delay((unsigned long)((20)*(10000000/4000.0)));
 
- for (i = 0; i < 3; i++) {
-  out_inst_LCD(0x03);
-  _delay((unsigned long)((5)*(10000000/4000.0)));
- }
+    for (i = 0; i < 3; i++) {
+        out_inst_LCD(0x03);
+        _delay((unsigned long)((5)*(10000000/4000.0)));
+    }
 
- out_inst_LCD(0x02);
- out_inst_LCD(0x02);
- out_inst_LCD(0x08);
- out_inst_LCD(0x00);
- out_inst_LCD(0x0c);
+    out_inst_LCD(0x02);
+    out_inst_LCD(0x02);
+    out_inst_LCD(0x08);
+    out_inst_LCD(0x00);
+    out_inst_LCD(0x0c);
 
- out_inst_LCD(0x00);
- out_inst_LCD(0x01);
- out_inst_LCD(0x00);
- out_inst_LCD(0x06);
+    out_inst_LCD(0x00);
+    out_inst_LCD(0x01);
+    out_inst_LCD(0x00);
+    out_inst_LCD(0x06);
 
     _delay((unsigned long)((20)*(10000000/4000.0)));
 }
@@ -806,32 +713,32 @@ void init_LCD(void)
 
 void LCD_wr_char(char c)
 {
- char str_H, str_L;
+    char str_H, str_L;
 
- str_H = c & 0xf0;
- str_H = str_H >> 4;
- str_L = c & 0x0f;
+    str_H = c & 0xf0;
+    str_H = str_H >> 4;
+    str_L = c & 0x0f;
 
- out_str_LCD(str_H);
- out_str_LCD(str_L);
+    out_str_LCD(str_H);
+    out_str_LCD(str_L);
 }
 
 
 void out_inst_LCD(unsigned char out_data)
 {
- out_LCD(out_data);
- PORTBbits.RB0 = 0; PORTBbits.RB1 = 1;
- PORTBbits.RB1 = 0;
- _delay((unsigned long)((5)*(10000000/4000.0)));
+    out_LCD(out_data);
+    PORTBbits.RB0 = 0; PORTBbits.RB1 = 1;
+    PORTBbits.RB1 = 0;
+    _delay((unsigned long)((5)*(10000000/4000.0)));
 }
 
 
 void out_str_LCD(unsigned char out_data)
 {
- out_LCD(out_data);
- PORTBbits.RB0 = 1; PORTBbits.RB1 = 1;
- PORTBbits.RB1 = 0;
- _delay((unsigned long)((100)*(10000000/4000000.0)));
+    out_LCD(out_data);
+    PORTBbits.RB0 = 1; PORTBbits.RB1 = 1;
+    PORTBbits.RB1 = 0;
+    _delay((unsigned long)((100)*(10000000/4000000.0)));
 }
 
 
@@ -844,7 +751,6 @@ void out_LCD(unsigned char data)
     PORTBbits.RB7 = (data & 0x08) >> 3;
 }
 
-
 void main(void) {
     TRISA = 0b00000000;
     TRISB = 0b00000000;
@@ -854,7 +760,7 @@ void main(void) {
     init_LCD();
 
 
-    LCD_goto(1, 0);
+    LCD_goto(1, 7);
     LCD_wr_char('0');
     LCD_wr_char('0');
     LCD_wr_char('.');
@@ -866,6 +772,4 @@ void main(void) {
     while(1) {
 
     }
-
-    return;
 }
