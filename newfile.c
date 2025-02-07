@@ -162,5 +162,12 @@ void main(void) {
 
     while(1) {
         // Empty main loop
+		if(PORTBbits.RB3 == 1) {
+			stopTimer();
+		}
+        
+        if(PORTBbits.RB2 == 1) {
+            startTimer();
+        }
     }
 }

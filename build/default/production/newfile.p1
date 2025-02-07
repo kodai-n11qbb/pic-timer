@@ -510,12 +510,34 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 41 ]
 {
 "165
-[; ;newfile.c: 165:     }
+[; ;newfile.c: 165:   if(PORTBbits.RB3 == 1) {
+[e $ ! == -> . . _PORTBbits 0 3 `i -> 1 `i 43  ]
+{
+"166
+[; ;newfile.c: 166:    stopTimer();
+[e ( _stopTimer ..  ]
+"167
+[; ;newfile.c: 167:   }
+}
+[e :U 43 ]
+"169
+[; ;newfile.c: 169:         if(PORTBbits.RB2 == 1) {
+[e $ ! == -> . . _PORTBbits 0 2 `i -> 1 `i 44  ]
+{
+"170
+[; ;newfile.c: 170:             startTimer();
+[e ( _startTimer ..  ]
+"171
+[; ;newfile.c: 171:         }
+}
+[e :U 44 ]
+"172
+[; ;newfile.c: 172:     }
 }
 [e :U 40 ]
 [e $U 41  ]
 [e :U 42 ]
-"166
-[; ;newfile.c: 166: }
+"173
+[; ;newfile.c: 173: }
 [e :UE 39 ]
 }
