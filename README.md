@@ -13,7 +13,6 @@
 ・XC8 C99
 
 ## 使用方法
-`git clone https://github.com/kodai-n111qbb/pic-timer`
-もしくは
-`https://github.com/kodai-n11qbb/pic-timer/archive/refs/heads/main.zip`
-からダウンロード
+`git clone https://github.com/kodai-n111qbb/pic-timer`\
+もしくは\
+[ここ](https://github.com/kodai-n11qbb/pic-timer/archive/refs/heads/main.zip)からダウンロード
