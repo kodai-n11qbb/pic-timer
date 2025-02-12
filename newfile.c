@@ -144,7 +144,7 @@ void out_LCD(unsigned char data)
 
 void main(void) {
     TRISA = 0b00000000;
-    TRISB = 0b00000000;  
+    TRISB = 0b00001100;
     PORTA = 0x00;
     PORTB = 0x00;        
 
@@ -158,10 +158,7 @@ void main(void) {
     LCD_wr_char('0');
     LCD_wr_char('s');
 
-    startTimer();
-
     while(1) {
-        // Empty main loop
 		if(PORTBbits.RB3 == 1) {
 			stopTimer();
 		}

@@ -3,19 +3,19 @@
 [d edition pro ]
 [d chip 16F84A ]
 [d frameptr 0 ]
-"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\lwdiv.c
+"5 C:\Program Files\Microchip\xc8\v2.10\pic\sources\c90\common\lwdiv.c
 [v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
-"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\lwmod.c
+"5 C:\Program Files\Microchip\xc8\v2.10\pic\sources\c90\common\lwmod.c
 [v ___lwmod __lwmod `(ui  1 e 2 0 ]
-"10 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\sprcadd.c
+"10 C:\Program Files\Microchip\xc8\v2.10\pic\sources\c90\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
-"4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul8_16.c
+"4 C:\Program Files\Microchip\xc8\v2.10\pic\sources\c90\common\Umul8_16.c
 [v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
-"6 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\pic\__eeprom.c
+"6 C:\Program Files\Microchip\xc8\v2.10\pic\sources\c90\pic\__eeprom.c
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"30 C:\Users\sd2312102\Desktop\p20250203b.X\newfile.c
+"30 C:\Users\k1512\ripositories\pic-timer\newfile.c
 [v _startTimer startTimer `(v  1 e 1 0 ]
 "37
 [v _stopTimer stopTimer `(v  1 e 1 0 ]
@@ -42,7 +42,7 @@
 [v i1_out_LCD out_LCD `(v  1 e 1 0 ]
 "145
 [v _main main `(v  1 e 1 0 ]
-"59 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f84a.h
+"59 C:\Program Files\Microchip\xc8\v2.10\pic\include\pic16f84a.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
 "166
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
@@ -68,7 +68,7 @@
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
 "498
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
-"26 C:\Users\sd2312102\Desktop\p20250203b.X\newfile.c
+"26 C:\Users\k1512\ripositories\pic-timer\newfile.c
 [v _tenthSeconds tenthSeconds `VEui  1 e 2 0 ]
 "27
 [v _timerRunning timerRunning `VEuc  1 e 1 0 ]
@@ -77,7 +77,7 @@
 "145
 [v _main main `(v  1 e 1 0 ]
 {
-"173
+"170
 } 0
 "37
 [v _stopTimer stopTimer `(v  1 e 1 0 ]
@@ -206,7 +206,7 @@
 [v i1out_LCD@data data `uc  1 a 1 2 ]
 "143
 } 0
-"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\lwmod.c
+"5 C:\Program Files\Microchip\xc8\v2.10\pic\sources\c90\common\lwmod.c
 [v ___lwmod __lwmod `(ui  1 e 2 0 ]
 {
 "10
@@ -216,7 +216,7 @@
 [v ___lwmod@dividend dividend `ui  1 p 2 10 ]
 "25
 } 0
-"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\lwdiv.c
+"5 C:\Program Files\Microchip\xc8\v2.10\pic\sources\c90\common\lwdiv.c
 [v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
 {
 "10
